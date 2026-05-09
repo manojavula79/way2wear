@@ -1,0 +1,108 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Way2Wear</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="chat-viewport">
+    <!-- Welcome Screen (Only shown when no messages) -->
+    @if (chatHistory.length === 0) {
+      <div class="welcome-section">
+        <h1 class="main-title">From idea to outfit in seconds</h1>
+        <p class="sub-title">Tell us where. We style you. 🔥</p>
+        <p class="tagline">Stop scrolling. Start wearing.</p>
+      </div>
+    }
+
+    <!-- Chat Messages -->
+    <div class="messages-list">
+      @for (msg of chatHistory; track $index) {
+        <div class="message-row" [class.user]="msg.role === 'user'">
+          <div class="message-bubble" [class.assistant]="msg.role === 'assistant'">
+            
+            <!-- User Text -->
+            @if (msg.role === 'user') {
+              <p>{{ msg.text }}</p>
+            }
+
+            <!-- Assistant Response -->
+            @if (msg.role === 'assistant') {
+              @if (msg.loading) {
+                <div class="typing-indicator">
+                  <span></span><span></span><span></span>
+                </div>
+              } @else {
+                <!-- Stylist Advice -->
+                @if (msg.text) { <p>{{ msg.text }}</p> }
+                
+                @if (msg.outfit) {
+                  <div class="outfit-advice">
+                    <ion-icon name="sparkles" color="warning"></ion-icon>
+                    <p>{{ msg.outfit.advice }}</p>
+                  </div>
+
+                  <!-- Product Grid -->
+                  <div class="product-grid">
+                    @for (product of msg.products; track product.id) {
+                      <div class="product-card">
+                        <div class="product-image">
+                          <img [src]="product.image" [alt]="product.name" referrerpolicy="no-referrer">
+                          <div class="platform-badge">{{ product.platform }}</div>
+                        </div>
+                        <div class="product-info">
+                          <span class="part-label">{{ product.part }}</span>
+                          <h4 class="product-name">{{ product.name }}</h4>
+                          <div class="price-row">
+                            <span class="price">{{ product.price }}</span>
+                            <a [href]="product.link" target="_blank" class="buy-btn">
+                              Buy <ion-icon name="arrow-forward-outline"></ion-icon>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <div class="input-container">
+    <div class="input-wrapper">
+      <ion-button fill="clear" class="add-btn">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+      <ion-input
+        placeholder="Send a message..."
+        [(ngModel)]="message"
+        (keyup.enter)="sendMessage()"
+        [disabled]="isStyling"
+      ></ion-input>
+      <div class="action-buttons">
+        <ion-button fill="clear" class="mic-btn">
+          <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" class="send-btn" (click)="sendMessage()" [disabled]="!message.trim() || isStyling">
+          <ion-icon slot="icon-only" name="paper-plane-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-footer>

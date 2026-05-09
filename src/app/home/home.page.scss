@@ -1,0 +1,255 @@
+ion-content {
+  --background: #ffffff;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #000000;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.chat-viewport {
+  padding: 20px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #4a4a4a;
+  margin-bottom: 8px;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: #8e8e8e;
+}
+
+/* Chat Messages */
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message-row {
+  display: flex;
+  width: 100%;
+  &.user {
+    justify-content: flex-end;
+  }
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  
+  background: #f4f4f4;
+  color: #1a1a1a;
+  border-bottom-right-radius: 4px;
+
+  &.assistant {
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.outfit-advice {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  background: #fff9e6;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ffeeba;
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #856404;
+  }
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.product-image {
+  height: 180px;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.platform-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.part-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #8e8e8e;
+  letter-spacing: 0.5px;
+}
+
+.product-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 4px 0;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.price {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+}
+
+.buy-btn {
+  background: #1a1a1a;
+  color: white;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 10px;
+  span {
+    width: 6px;
+    height: 6px;
+    background: #8e8e8e;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+    &:nth-child(1) { animation-delay: -0.32s; }
+    &:nth-child(2) { animation-delay: -0.16s; }
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+
+ion-footer {
+  background: #ffffff;
+  padding: 16px 20px 30px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f4f4f4;
+  border-radius: 30px;
+  padding: 4px 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+ion-input {
+  --padding-start: 8px;
+  --placeholder-color: #8e8e8e;
+  --placeholder-opacity: 1;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.add-btn {
+  --color: #4a4a4a;
+  margin-right: 4px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.mic-btn {
+  --color: #4a4a4a;
+}
+
+.send-btn {
+  --color: #1a1a1a;
+  --padding-start: 8px;
+}
